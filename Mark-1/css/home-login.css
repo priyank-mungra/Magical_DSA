@@ -1,0 +1,46 @@
+form{
+    background-color: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-fields {
+    font-size: 18px;
+    padding-bottom: 12px;
+    margin-bottom: 36px;
+    border: 0px;
+    border-bottom: 1px solid #aaa;
+    width: 100%;
+}
+
+.form-heading{
+    font-size: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.social-login{
+    background-color: #f2f6ff;
+    padding: 24px;
+}
+.input-container{
+    padding-top: 80px;
+    padding-right: 80px;
+    padding-left: 80px;
+    padding-bottom: 40px;
+}
+
+.img-logo{
+    width: 50px;
+    height: 50px;
+    /* padding-left: 10px; */
+}
+
+#submit{
+    background-color: #0056ff;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
