@@ -76,35 +76,42 @@
         </div>
     </nav>
 
-    <section>
+    <!-- <section>
         <h1 class="display-5 d-flex justify-content-center">Sorting</h1>
-    </section>
+    </section> -->
 
     <!-- Simulation -->
     <section style="background-color:#f1f1f1;">
-        <button type="button" class="btn btn-success m-4" id="startBubbleSort" onclick="ascendingBubbleSort()">Ascending Order</button>
-        <button type="button" class="btn btn-success m-4" id="startBubbleSort" onclick="descendingBubbleSort()">Descending Order</button>
         <div class="container-fluid d-flex justify-content-center p-5">
             <div id="chart">
 
             </div>
         </div>
+        <button type="button" class="btn btn-success m-4" id="startBubbleSort" onclick="ascendingBubbleSort()">Ascending Order</button>
+        <button type="button" class="btn btn-success m-4" id="startBubbleSort" onclick="descendingBubbleSort()">Descending Order</button>
     </section>
 
     <!-- D3 Bar chart -->
     <script>
-        var duration = 1000;
-        var num = [50, 70, 20, 80, 130, 430, 570, 320, 180, 247, 15, 19, 23];
-
-        var height = d3.max(num) + 15;
-        var barWidth = 38;
-        var barOffSet = 5;
+        var duration = 10;
+        // var num = [50, 70, 20, 80, 130, 430, 570, 320, 180, 247, 15, 19, 23];
+        var num = [11, 14, 12, 15, 13, 1, 3,2,4 , 6, 5, 7, 8, 9, 10, 16, 19, 23, 24, 25, 29];
+        var canvasWidth = 1300;
+        var height = 400 //d3.max(num) + 15;
+        var arr_max = d3.max(num) + 15;
+        var arr_size = num.length;
+        const barOffSet = 5;
+        var barWidth = Math.floor( (canvasWidth/arr_size) ) - (2*barOffSet);
+        if(barWidth <= 0){
+            barWidth = 1;
+        }
+        // var componentWidth = Math.floor(canvasWidth / arr_size);
 
         var myChart = d3.select("#chart")
             .append('svg')
-            .attr('width', 600)
+            .attr('width', canvasWidth)
             .attr('height', height)
-            //.style('background', 'gray')
+            // .style('background', 'gray')
             //.style('margin-bottom', 380)
             .style('padding', '5px');
 
@@ -118,13 +125,13 @@
             .style('fill', 'green')
             .attr('width', barWidth)
             .attr('height', function(d) {
-                return d;
+                return Math.floor((d * height) / arr_max);
             })
             .attr('x', function(d, i) {
                 return i * (barOffSet + barWidth);
             })
             .attr('y', function(d) {
-                return height - d;
+                return height - Math.floor((d * height) / arr_max);
             });
 
         var text = myChart.selectAll('text')
@@ -143,7 +150,7 @@
                 return (i + 0.1) * (barOffSet + barWidth);
             })
             .attr('y', function(d) {
-                return height - d;
+                return height - Math.floor((d * height) / arr_max);
             });
     </script>
 
