@@ -1,10 +1,13 @@
 var isContinuous = false
+var temp = num;
 
 async function ascendingBubbleSort() {
     if (isContinuous) {
         alert("WAIT: Descending in process");
         return -1;
     }
+    d3.selectAll('rect')
+        .style('fill', 'green');
     isContinuous = true;
     let len = num.length;
     let swapped;
@@ -19,6 +22,8 @@ async function ascendingBubbleSort() {
                 swapped = true;
                 // call function here for swap animation...
                 await swapAnimation(num[i], num[i + 1]);
+                d3.selectAll('rect')
+                    .style('fill', 'green');
                 // console.log(num);
             }
         }
@@ -37,6 +42,8 @@ async function descendingBubbleSort() {
         alert("WAIT: Ascending in process");
         return -1;
     }
+    d3.selectAll('rect')
+        .style('fill', 'green');
     isContinuous = true;
     let len = num.length;
     let swapped;
@@ -89,12 +96,14 @@ function swapAnimation(d, d1) {
         d3.select(rect1)
         .transition()
         .duration(duration)
+        .style('fill', 'orange')
         .attr("x", rect_x_2)
         .end(),
 
         d3.select(rect2)
         .transition()
         .duration(duration)
+        .style('fill', 'orange')
         .attr("x", rect_x_1)
         .end()
     ])
