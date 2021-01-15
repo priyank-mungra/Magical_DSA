@@ -22,10 +22,8 @@
     <link rel="stylesheet" href="./css/home-id.css">
     <link rel="stylesheet" href="./css/home-hover.css">
 
-
-
     <!-- Browser Logo or Logo in browser tab -->
-    <link re l="icon" href="./Images/Browser-Logo-4.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="./Images/Browser-Logo-4.png" type="image/gif" sizes="16x16">
     <title>Visual Wizard</title>
 
 
@@ -33,8 +31,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!--   D3 Data Driven Document -->
-    <script src="https://d3js.org/d3.v6.min.js">
-    </script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <!-- Create Chart with d3 -->
+    <script src="js/d3ChartCreate.js"></script>
+
 </head>
 
 <body>
@@ -46,7 +47,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active p-2">
                     <a class="nav-link" href="HomePage.html">Home</a>
@@ -91,79 +92,12 @@
         </div>
         <button type="button" class="btn btn-success m-4" id="ascendingBubbleSort" onclick="ascendingBubbleSort()">Ascending Order</button>
         <button type="button" class="btn btn-success m-4" id="descendingBubbleSort" onclick="descendingBubbleSort()">Descending Order</button>
+        <button type="button" class="btn btn-success m-4" id="resetInput" onclick="resetInput()">Reset</button>
     </section>
 
     <!--    D3 Bar chart -->
     <script>
-        var duration = 1000;
-        //var num = [50, 70, 20, 80, 130, 430, 570, 320, 180, 247, 15, 19, 23];
-        var num = [11, 14, 1, 12, 15, 13, 17, 3, 2, 4, 6, 5, 7, 8, 9, 10, 16, 19, 23, 24, 25, 29];
-        // var num = [];
-        // for(i = 1; i <= 70; i++){
-        //     num.push(i);
-        // }
-
-        var canvasWidth = 1300;
-        var height = 400
-        var font_size = 15;
-        var virtual_height = height - font_size;
-        var arr_max = d3.max(num);
-        var arr_size = num.length;
-        var componentWidth = Math.floor(canvasWidth / arr_size);
-        var barSpaceRatio = 0.97;
-        var barWidth = Math.floor(barSpaceRatio * componentWidth);
-        const barOffSet = componentWidth - barWidth;
-        if (barWidth <= 0) {
-            barWidth = 1;
-        }
-        // var componentWidth = Math.floor(canvasWidth / arr_size);
-
-        var myChart = d3.select("#chart")
-            .append('svg')
-            .attr('width', canvasWidth)
-            .attr('height', height)
-            //.style('background', 'gray')
-            //.style('margin-bottom', 380)
-            // .style('padding', '5px');
-            // .style('margin', '5px');
-
-        var rect = myChart.selectAll('rect')
-            .data(num)
-            .enter()
-            .append('rect')
-            .attr('id', function(d) {
-                return "rect" + d
-            })
-            .style('fill', 'green')
-            .attr('width', barWidth)
-            .attr('height', function(d) {
-                return Math.floor((d * virtual_height) / arr_max);
-            })
-            .attr('x', function(d, i) {
-                return i * (barOffSet + barWidth);
-            })
-            .attr('y', function(d) {
-                return height - Math.floor((d * virtual_height) / arr_max);
-            });
-
-        var text = myChart.selectAll('text')
-            .data(num)
-            .enter()
-            .append('text')
-            .style("font", font_size + "px sans-serif")
-            .style('font-weight', 'bold')
-            .attr('id', function(d) {
-                return "text" + d
-            })
-            .text(function(d) {
-                return d;
-            })
-            .attr('x', function(d, i) {
-                return (i + 0.1) * (barOffSet + barWidth);
-            })
-            .attr('y', function(d) {
-                return height - Math.floor((d * virtual_height) / arr_max);
-            });
+        createChart()
     </script>
 
 
@@ -172,17 +106,16 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2020 Copyright:
-            <a class="text-dark" href="https://github.com/yash-a-18" rel="noopener noreferrer" target="_blank">Yash Amethiya</a>
+            <a class="text-dark" href="https://github.com/priyank-mungra/Magical_DSA" rel="noopener noreferrer" target="_blank">Visual Wizard-Magical DSA</a>
         </div>
     </footer>
-
-    <!-- JavaScript for particles-js -->
-    <!-- <script src="js/particles.min.js"></script>
-    <script src="js/app.js"></script> -->
 
     <!-- Sorting Algorithms -->
     <script src="js/BubbleSort.js"></script>
     <!-- <script src="js/demo.js"></script> -->
+
+    <!-- Simulation JavaScript -->
+    <script src="js/Simulation.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,5 +1,5 @@
-var isContinuous = false
-var temp = num;
+var isContinuous = false;
+var noInterruption = true;
 
 async function ascendingBubbleSort() {
     if (isContinuous) {
@@ -9,32 +9,35 @@ async function ascendingBubbleSort() {
     d3.selectAll('rect')
         .style('fill', 'green');
     isContinuous = true;
-    let len = num.length;
+    let len = currentValue.length;
     let swapped;
     do {
         swapped = false;
-        for (let i = 0; i < len; i++) {
-            if (num[i] > num[i + 1]) {
+        for (let i = 0; i < len && noInterruption; i++) {
+            if (currentValue[i] > currentValue[i + 1]) {
 
-                let temp = num[i];
-                num[i] = num[i + 1];
-                num[i + 1] = temp;
+                let temp = currentValue[i];
+                currentValue[i] = currentValue[i + 1];
+                currentValue[i + 1] = temp;
                 swapped = true;
                 // call function here for swap animation...
-                await swapAnimation(num[i], num[i + 1]);
+                await swapAnimation(currentValue[i], currentValue[i + 1]);
                 d3.selectAll('rect')
                     .style('fill', 'green');
-                // console.log(num);
+                // console.log(currentValue);
             }
         }
-    } while (swapped);
-    // return console.log(num);
-    d3.selectAll('rect')
-        .transition()
-        .duration(duration)
-        .delay(duration)
-        .style('fill', '#800000')
+    } while (swapped && noInterruption);
+    // return console.log(currentValue);
+    if (noInterruption) {
+        d3.selectAll('rect')
+            .transition()
+            .duration(duration)
+            .delay(duration)
+            .style('fill', '#800000')
+    }
     isContinuous = false;
+    noInterruption = true;
 }
 
 async function descendingBubbleSort() {
@@ -45,30 +48,35 @@ async function descendingBubbleSort() {
     d3.selectAll('rect')
         .style('fill', 'green');
     isContinuous = true;
-    let len = num.length;
+    let len = currentValue.length;
     let swapped;
     do {
         swapped = false;
-        for (let i = 0; i < len; i++) {
-            if (num[i] < num[i + 1]) {
+        for (let i = 0; i < len && noInterruption; i++) {
+            if (currentValue[i] < currentValue[i + 1]) {
 
-                let temp = num[i];
-                num[i] = num[i + 1];
-                num[i + 1] = temp;
+                let temp = currentValue[i];
+                currentValue[i] = currentValue[i + 1];
+                currentValue[i + 1] = temp;
                 swapped = true;
                 // call function here for swap animation...
-                await swapAnimation(num[i], num[i + 1]);
-                // console.log(num);
+                await swapAnimation(currentValue[i], currentValue[i + 1]);
+                d3.selectAll('rect')
+                    .style('fill', 'green');
+                // console.log(currentValue);
             }
         }
-    } while (swapped);
-    // return console.log(num);
-    d3.selectAll('rect')
-        .transition()
-        .duration(duration)
-        .delay(duration)
-        .style('fill', '#800000')
+    } while (swapped && noInterruption);
+    // return console.log(currentValue);
+    if (noInterruption) {
+        d3.selectAll('rect')
+            .transition()
+            .duration(duration)
+            .delay(duration)
+            .style('fill', '#800000')
+    }
     isContinuous = false;
+    noInterruption = true;
 }
 
 function swapAnimation(d, d1) {
