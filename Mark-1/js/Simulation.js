@@ -1,14 +1,28 @@
 function resetInput() {
-    // console.log("initial", initial);
     noInterruption = false;
-    currentValue = [];
-    for (let i = 0; i < initial.length; i++) {
-        currentValue.push(initial[i]);
-    }
+    currentValue = [...initial];
     myChart.remove();
     createChart();
-    // console.log("currentValue", currentValue);
 }
+
+window.addEventListener("resize", resizeCanvas );
+function resizeCanvas(){
+    canvasWidth = Math.floor(window.innerWidth * 0.85);
+    height = Math.floor(window.innerHeight * 0.55);
+    virtual_height = height - font_size;
+    arr_max = d3.max(currentValue);
+    arr_size = currentValue.length;
+    componentWidth = Math.floor(canvasWidth / arr_size);
+    barWidth = Math.floor(barSpaceRatio * componentWidth);
+    barOffSet = componentWidth - barWidth;
+    if (barWidth <= 0) {
+        barWidth = 1;
+    }
+
+    myChart.remove();
+    createChart();
+}
+
 
 function swapAnimation(d, d1) {
     var rect1 = `#rect${d}`,
