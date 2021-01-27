@@ -17,6 +17,7 @@ function resetInput() {
     }
     duration = speedMax - speedAdjust.value + speedMin;
     currentValue = [...initial];
+    updateValue();
     myChart.remove();
     createChart();
 }

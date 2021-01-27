@@ -75,6 +75,9 @@ function createChart() {
 }
 
 function setUserInput() {
+    if(isContinuous){
+        noInterruption = false;
+    }
     let userInput = document.getElementById("userInput");
     let userInputValue = "" + userInput.value;
     currentValue = [];
@@ -99,6 +102,7 @@ function setUserInput() {
             // $('.alert').alert()
         return;
     }
+    initial = currentValue;
     updateValue();
     myChart.remove();
     createChart();
