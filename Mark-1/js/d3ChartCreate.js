@@ -77,15 +77,11 @@ function createChart() {
 function setUserInput() {
     let userInput = document.getElementById("userInput");
     let userInputValue = "" + userInput.value;
-    if (!isNaN(userInput.value)) {
-        // alert("");
-        $('#alert_placeholder').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"> <strong > No Input! </strong> Please give some input. <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close" > <span aria-hidden = "true"> &times; </span> </button > </div > ')
-            // $('.alert').alert()
-        return;
-    }
-    initial = [];
+    currentValue = [];
+    let isValueAvailable = false;
     for (let i = 0; i < userInputValue.length; i++) {
         if (!isNaN(parseInt(userInputValue[i]))) {
+            isValueAvailable = true;
             let startIndex = i;
             do {
                 i++;
@@ -93,10 +89,16 @@ function setUserInput() {
             let endIndex = i;
             let number = userInputValue.substring(startIndex, endIndex);
             number = parseInt(number);
-            initial.push(number);
+            currentValue.push(number);
         }
     }
-    currentValue = [...initial];
+    if(!isValueAvailable){
+        // alert("");
+        $('#alert_placeholder').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"> <strong > Invalid Input! </strong> Please give some input. <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close" > <span aria-hidden = "true"> &times; </span> </button > </div > ')
+        currentValue = initial;
+            // $('.alert').alert()
+        return;
+    }
     updateValue();
     myChart.remove();
     createChart();
