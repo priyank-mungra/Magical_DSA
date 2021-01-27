@@ -1,8 +1,21 @@
+let speedMin = 50;
+let speedMax = 1500;
+let defaultSpeed = (speedMax + speedMin) / 2;
+let duration = defaultSpeed;
+
 let speedAdjust = document.getElementById("speedAdjust");
+speedAdjust.setAttribute("min", speedMin);
+speedAdjust.setAttribute("max", speedMax);
+speedAdjust.value = defaultSpeed;
+
 
 function resetInput() {
-    noInterruption = false;
-    duration = speedAdjust.value;
+    // console.log(speedAdjust.value, duration);
+    if(isContinuous)
+    {
+        noInterruption = false;
+    }
+    duration = speedMax - speedAdjust.value + speedMin;
     currentValue = [...initial];
     myChart.remove();
     createChart();
@@ -95,6 +108,6 @@ function compareAnimation(d, d1) {
 
 
 speedAdjust.addEventListener("change", function(e) {
-    duration = speedAdjust.defaultValue - speedAdjust.value;
+    duration = speedMax - speedAdjust.value + speedMin;
     // console.log(duration);
 })

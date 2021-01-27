@@ -1,5 +1,5 @@
-var isContinuous = false;
-var noInterruption = true;
+let isContinuous = false;
+let noInterruption = true;
 
 async function ascendingBubbleSort() {
     if (isContinuous) {
