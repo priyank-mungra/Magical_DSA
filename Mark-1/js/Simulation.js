@@ -1,12 +1,16 @@
+let speedAdjust = document.getElementById("speedAdjust");
+
 function resetInput() {
     noInterruption = false;
+    duration = speedAdjust.value;
     currentValue = [...initial];
     myChart.remove();
     createChart();
 }
 
-window.addEventListener("resize", resizeCanvas );
-function resizeCanvas(){
+window.addEventListener("resize", resizeCanvas);
+
+function resizeCanvas() {
     canvasWidth = Math.floor(window.innerWidth * 0.85);
     height = Math.floor(window.innerHeight * 0.55);
     virtual_height = height - font_size;
@@ -88,3 +92,9 @@ function compareAnimation(d, d1) {
         .style('fill', 'green')
     ])
 }
+
+
+speedAdjust.addEventListener("change", function(e) {
+    duration = speedAdjust.defaultValue - speedAdjust.value;
+    // console.log(duration);
+})

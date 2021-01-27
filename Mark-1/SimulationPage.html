@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./css/home-webkit.css">
     <link rel="stylesheet" href="./css/home-id.css">
     <link rel="stylesheet" href="./css/home-hover.css">
+    <link rel="stylesheet" href="./css/simulation.css">
 
     <!-- Browser Logo or Logo in browser tab -->
     <link rel="icon" href="./Images/Browser-Logo-4.png" type="image/gif" sizes="16x16">
@@ -45,8 +46,8 @@
             <img src="./Images/Logo.png" height="45" class="d-inline-block align-top" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active p-2">
@@ -55,7 +56,7 @@
                 <li class="nav-item dropdown active p-2" title="Previous saved states">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Stockpile
-                        </a>
+                    </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Data structures</a>
                         <a class="dropdown-item" href="#">Sorting Algorithms</a>
@@ -90,9 +91,40 @@
 
             </div>
         </div>
-        <button type="button" class="btn btn-success m-4" id="ascendingBubbleSort" onclick="ascendingBubbleSort()">Ascending Order</button>
-        <button type="button" class="btn btn-success m-4" id="descendingBubbleSort" onclick="descendingBubbleSort()">Descending Order</button>
-        <button type="button" class="btn btn-success m-4" id="resetInput" onclick="resetInput()">Reset</button>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success m-4" id="ascendingBubbleSort" onclick="ascendingBubbleSort()">Ascending Order</button>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-success m-4" id="descendingBubbleSort" onclick="descendingBubbleSort()">Descending Order</button>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-success m-4" id="resetInput" onclick="resetInput()">Reset</button>
+                </div>
+                <div class="col-sm-2 p-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <strong>Adjust Speed</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="range" min="50" max="1000" style="color: green;" id="speedAdjust" value="1000" style="cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 my-4">
+                    <i class="fa fa-step-backward fa-lg m-2" title="Backward" style="cursor: pointer;"></i>
+                    <i class="fa fa-play fa-lg m-2" title="Play" style="cursor: pointer;"></i>/
+                    <i class="fa fa-pause fa-lg m-2" title="Pause" style="cursor: pointer;"></i>
+                    <i class="fa fa-step-forward fa-lg m-2" title="Forward" style="cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!--    D3 Bar chart -->

@@ -34,7 +34,8 @@ function createChart() {
         .data(currentValue)
         .enter()
         .append('rect')
-        .attr('id', function(d) {
+        .attr('id', function(d, i) {
+            // console.log("rect" + i);
             return "rect" + d
         })
         .style('fill', 'green')
@@ -55,7 +56,8 @@ function createChart() {
         .append('text')
         .style("font", font_size + "px sans-serif")
         .style('font-weight', 'bold')
-        .attr('id', function(d) {
+        .attr('id', function(d, i) {
+            // console.log("text" + i);
             return "text" + d
         })
         .text(function(d) {
