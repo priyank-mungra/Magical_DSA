@@ -124,9 +124,15 @@
                     <i class="fa fa-step-forward fa-lg m-2" title="Forward" style="cursor: pointer;"></i>
                 </div>
             </div>
-            <div class="row" style="background-color: cornflowerblue;">
-                <div class="col-sm-9">
-                    <textarea name="userInput" id="userInput" cols="80" rows="5" placeholder="[3, 2, 4,5] or 1 2 3 4 "></textarea>
+            <div class="row">
+                <div class="col-sm-9 p-2">
+                    <div class="form-group">
+                        <div id="alert_placeholder"></div>
+
+
+                        <label for="userInput">Create your own chart, Add values</label>
+                        <textarea class="form-control" id="userInput" name="userInput" rows="3" placeholder="[3, 2, 4,5] or 1 2 3 4 "></textarea>
+                    </div>
                 </div>
                 <div class="col" style="margin-top: auto; margin-bottom: auto; margin-right: auto;">
                     <button type="button" class="btn btn-success m-4" id="setUserInput" onclick="setUserInput()">Set Input</button>

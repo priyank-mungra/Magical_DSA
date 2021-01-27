@@ -11,7 +11,7 @@ var canvasWidth, height, virtual_height, arr_max, arr_size, componentWidth, barW
 canvasWidth = Math.floor(window.innerWidth * 0.85); //1300
 height = Math.floor(window.innerHeight * 0.55); //400
 
-function updateValue(){
+function updateValue() {
     virtual_height = height - font_size;
     arr_max = d3.max(currentValue);
     arr_size = currentValue.length;
@@ -74,16 +74,22 @@ function createChart() {
         });
 }
 
-function setUserInput(){
+function setUserInput() {
     let userInput = document.getElementById("userInput");
     let userInputValue = "" + userInput.value;
+    if (!isNaN(userInput.value)) {
+        // alert("");
+        $('#alert_placeholder').html('<div class="alert alert-warning alert-dismissible fade show" role="alert"> <strong > No Input! </strong> Please give some input. <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close" > <span aria-hidden = "true"> &times; </span> </button > </div > ')
+            // $('.alert').alert()
+        return;
+    }
     initial = [];
-    for(let i = 0; i < userInputValue.length; i++){
-        if(!isNaN(parseInt(userInputValue[i]) )){
+    for (let i = 0; i < userInputValue.length; i++) {
+        if (!isNaN(parseInt(userInputValue[i]))) {
             let startIndex = i;
-            do{
+            do {
                 i++;
-            } while (!isNaN(parseInt(userInputValue[i]) ) );
+            } while (!isNaN(parseInt(userInputValue[i])));
             let endIndex = i;
             let number = userInputValue.substring(startIndex, endIndex);
             number = parseInt(number);
