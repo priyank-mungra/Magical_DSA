@@ -5,20 +5,24 @@ var currentValue = [...initial];
 var myChart;
 var text;
 var rect;
-var canvasWidth = Math.floor(window.innerWidth * 0.85); //1300
-var height = Math.floor(window.innerHeight * 0.55); //400
 var font_size = 15;
-var virtual_height = height - font_size;
-var arr_max = d3.max(currentValue);
-var arr_size = currentValue.length;
-var componentWidth = Math.floor(canvasWidth / arr_size);
 var barSpaceRatio = 0.97;
-var barWidth = Math.floor(barSpaceRatio * componentWidth);
-var barOffSet = componentWidth - barWidth;
-if (barWidth <= 0) {
-    barWidth = 1;
+var canvasWidth, height, virtual_height, arr_max, arr_size, componentWidth, barWidth, barOffSet;
+canvasWidth = Math.floor(window.innerWidth * 0.85); //1300
+height = Math.floor(window.innerHeight * 0.55); //400
+
+function updateValue(){
+    virtual_height = height - font_size;
+    arr_max = d3.max(currentValue);
+    arr_size = currentValue.length;
+    componentWidth = Math.floor(canvasWidth / arr_size);
+    barWidth = Math.floor(barSpaceRatio * componentWidth);
+    barOffSet = componentWidth - barWidth;
+    if (barWidth <= 0) {
+        barWidth = 1;
+    }
 }
-// var componentWidth = Math.floor(canvasWidth / arr_size);
+updateValue();
 
 function createChart() {
     myChart = d3.select("#chart")
@@ -68,4 +72,26 @@ function createChart() {
         .attr('y', function(d) {
             return height - Math.floor((d * virtual_height) / arr_max);
         });
+}
+
+function setUserInput(){
+    let userInput = document.getElementById("userInput");
+    let userInputValue = "" + userInput.value;
+    initial = [];
+    for(let i = 0; i < userInputValue.length; i++){
+        if(!isNaN(parseInt(userInputValue[i]) )){
+            let startIndex = i;
+            do{
+                i++;
+            } while (!isNaN(parseInt(userInputValue[i]) ) );
+            let endIndex = i;
+            let number = userInputValue.substring(startIndex, endIndex);
+            number = parseInt(number);
+            initial.push(number);
+        }
+    }
+    currentValue = [...initial];
+    updateValue();
+    myChart.remove();
+    createChart();
 }
