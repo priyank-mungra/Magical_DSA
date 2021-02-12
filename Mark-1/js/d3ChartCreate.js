@@ -102,7 +102,7 @@ function setUserInput() {
             // $('.alert').alert()
         return;
     }
-    initial = currentValue;
+    initial = [...currentValue];
     updateValue();
     myChart.remove();
     createChart();
