@@ -16,25 +16,19 @@ async function ascendingBubbleSort() {
     do {
         swapped = false;
         for (let i = 0; i+j < len-1 && noInterruption; i++) {
-            if (currentValue[i] > currentValue[i + 1]) {
-
-                let temp = currentValue[i];
+            if (currentValue[i].val > currentValue[i + 1].val) {
+                let temp = JSON.parse(JSON.stringify(currentValue[i]) );
                 currentValue[i] = currentValue[i + 1];
                 currentValue[i + 1] = temp;
                 swapped = true;
-                // call function here for swap animation...
-                await swapAnimation(currentValue[i], currentValue[i + 1]);
-                // d3.selectAll('rect')
-                //     .style('fill', 'green');
-                // console.log(currentValue);
+                await swapAnimation(currentValue[i].index, currentValue[i + 1].index);
             }
             else{
-                await compareAnimation(currentValue[i], currentValue[i + 1]);
+                await compareAnimation(currentValue[i].index, currentValue[i + 1].index);
             }
         }
         j++;
     } while (swapped && noInterruption);
-    // return console.log(currentValue);
     if (noInterruption) {
         d3.selectAll('rect')
             .transition()
@@ -60,25 +54,20 @@ async function descendingBubbleSort() {
     do {
         swapped = false;
         for (let i = 0; i+j < len-1 && noInterruption; i++) {
-            if (currentValue[i] < currentValue[i + 1]) {
+            if (currentValue[i].val < currentValue[i + 1].val) {
 
-                let temp = currentValue[i];
+                let temp = JSON.parse(JSON.stringify(currentValue[i]));
                 currentValue[i] = currentValue[i + 1];
                 currentValue[i + 1] = temp;
                 swapped = true;
-                // call function here for swap animation...
-                await swapAnimation(currentValue[i], currentValue[i + 1]);
-                // d3.selectAll('rect')
-                //     .style('fill', 'green');
-                // console.log(currentValue);
+                await swapAnimation(currentValue[i].index, currentValue[i + 1].index);
             }
             else{
-                await compareAnimation(currentValue[i], currentValue[i + 1]);
+                await compareAnimation(currentValue[i].index, currentValue[i + 1].index);
             }
         }
         j++;
     } while (swapped && noInterruption);
-    // return console.log(currentValue);
     if (noInterruption) {
         d3.selectAll('rect')
             .transition()

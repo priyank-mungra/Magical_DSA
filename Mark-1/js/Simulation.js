@@ -10,13 +10,12 @@ speedAdjust.value = defaultSpeed;
 
 
 function resetInput() {
-    // console.log(speedAdjust.value, duration);
     if(isContinuous)
     {
         noInterruption = false;
     }
     duration = speedMax - speedAdjust.value + speedMin;
-    currentValue = [...initial];
+    currentValue = JSON.parse(JSON.stringify(initial));
     updateValue();
     myChart.remove();
     createChart();
@@ -28,7 +27,7 @@ function resizeCanvas() {
     canvasWidth = Math.floor(window.innerWidth * 0.85);
     height = Math.floor(window.innerHeight * 0.55);
     virtual_height = height - font_size;
-    arr_max = d3.max(currentValue);
+    arr_max = getMaxArrObj(currentValue).val;
     arr_size = currentValue.length;
     componentWidth = Math.floor(canvasWidth / arr_size);
     barWidth = Math.floor(barSpaceRatio * componentWidth);
@@ -110,5 +109,4 @@ function compareAnimation(d, d1) {
 
 speedAdjust.addEventListener("change", function(e) {
     duration = speedMax - speedAdjust.value + speedMin;
-    // console.log(duration);
 })
